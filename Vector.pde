@@ -7,6 +7,11 @@ class Vector {
     this.y = y;
   }
   
+  public Vector(Point a, Point b) {
+    this.x = b.x - a.x;
+    this.y = b.y - a.y;
+  }
+  
   float dot(Vector p) {
     return this.x * p.x + this.y * p.y;
   }
@@ -17,5 +22,9 @@ class Vector {
   
   Vector rotated() {
     return new Vector(-this.y, this.x);
+  }
+  
+  float magnitude() {
+    return new Point(x, y).distance(0, 0);
   }
 }

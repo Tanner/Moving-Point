@@ -36,4 +36,48 @@ class PolyLoop {
   void removeAllPoints() {
     points.clear();
   }
+  
+  Point intersectionPoint(final Ray ray) {
+    if (points.size() == 0) {
+      return null;
+    }
+    
+    PriorityQueue<Point> candidates = new PriorityQueue<Point>(points.size(), new Comparator<Point>() {
+      public int compare(Point a, Point b) {
+        return (int)(ray.getOrigin().distance(a) - ray.getOrigin().distance(b));
+      }
+    });
+    
+    for (int i = 0; i < points.size(); i++) {
+      Point a = points.get(i);
+      Point b = points.get(nextPointIndex(i));
+      Point c = ray.getOrigin().pointByAddingVector(ray.getVector());
+      Point d = ray.getOrigin();
+      
+      float det1 = new Vector(a, b).det(new Vector(a, c));
+      float det2 = new Vector(a, b).det(new Vector(a, d));
+
+      if ((det1 < 0 && det2 > 0) ||
+          (det1 > 0 && det2 < 0)) {
+            float m1 = d.slope(c);
+            float m2 = a.slope(b);
+                                    
+            float x = (m2 * a.x - a.y - m1 * d.x + d.y) / (m2 - m1);
+            float y = m1 * (x - d.x) + d.y;
+            
+            if (x <= max(a.x, b.x) &&
+                x >= min(a.x, b.x) &&
+                y <= max(a.y, b.y) &&
+                y >= min(a.y, b.y)) {
+              candidates.add(new Point(x, y));
+            }
+      }
+    }
+    
+    if (candidates.size() > 0) {
+      return candidates.poll();
+    }
+    
+    return null;
+  }
 }

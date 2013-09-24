@@ -12,12 +12,20 @@ void draw() {
   background(#FFFFFF);
   stroke(#000000);
   fill(#000000);
-  strokeWeight(2);
+  strokeWeight(3);
   
   loop.display();
   
   if (ray != null) {
+    stroke(#00AA00);
     ray.display();
+    
+    Point intersection = loop.intersectionPoint(ray);
+    stroke(#000000);
+    
+    if (intersection != null) {
+      intersection.display();
+    }
   }
 }
 
@@ -39,7 +47,7 @@ void mouseDragged() {
       break;
     }
     case RAY: { 
-      ray.setAngle(ray.getOrigin().angleTo(mouseX, mouseY));
+      ray.setAngle(ray.getOrigin().angle(mouseX, mouseY));
       break;
     }
   }

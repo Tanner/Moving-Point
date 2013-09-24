@@ -27,4 +27,8 @@ class Ray {
   Point getOrigin() {
     return origin;
   }
+  
+  Vector getVector() {
+    return new Vector(cos(angle) * LENGTH, sin(angle) * LENGTH);
+  }
 }
