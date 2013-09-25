@@ -2,6 +2,7 @@
 PolyLoop loop = new PolyLoop();
 Ray ray = null;
 EditMode editMode = EditMode.POLYLOOP;
+final float LENGTH = 100;
 
 void setup() {
   size(600, 600);
@@ -17,9 +18,11 @@ void draw() {
   loop.display();
   
   if (ray != null) {
+    ray.setPolyLoop(loop);
+    
     stroke(#00AA00);
     ray.display();
-    
+        
     Point intersection = loop.intersectionPoint(ray);
     stroke(#000000);
     
@@ -35,7 +38,7 @@ void mousePressed() {
       loop.addPoint(mouseX, mouseY);
       break;
     case RAY:
-      ray = new Ray(mouseX, mouseY);
+      ray = new Ray(mouseX, mouseY, LENGTH);
       break;
   }
 }
