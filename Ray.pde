@@ -24,6 +24,9 @@ class Ray {
          origin.y + sin(angle) * length);
           
     if (reflection != null) {
+      Point intersection = reflection.getOrigin();
+      intersection.display();
+    
       reflection.display();
     }
   }
@@ -33,18 +36,18 @@ class Ray {
       return;
     }
     
-    Point p = loop.intersectionPoint(this);
-    Vector v = loop.intersectionVector(this);
+    Pair<Point, Vector> pair = loop.intersectionPointAndVectorPair(this);
     
-    if (p != null) {
+    if (pair != null) {      
+      Point p = pair.first;
+      Vector v = pair.second;
+    
       float remainingLength = length - getOrigin().distance(p);
       
       if (remainingLength <= 0) {
         return;
       }
       
-//      float angle = new Vector(1, 0).angle(v) + PI - getVector().angle(v);
-//      System.out.println(angle * 180 / PI);
       Vector incident = getVector().vectorByNormalizing();
       Vector normal = v.rotated().vectorByNormalizing();
       Vector reflection = incident.vectorBySubtracting(normal.vectorByMultiplying(incident.dot(normal) * 2));

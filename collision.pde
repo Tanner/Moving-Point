@@ -22,13 +22,6 @@ void draw() {
     
     stroke(#00AA00);
     ray.display();
-        
-    Point intersection = loop.intersectionPoint(ray);
-    stroke(#000000);
-    
-    if (intersection != null) {
-      intersection.display();
-    }
   }
 }
 
