@@ -2,7 +2,7 @@
 PolyLoop loop = new PolyLoop();
 Ray ray = null;
 EditMode editMode = EditMode.POLYLOOP;
-final float LENGTH = 100;
+final float LENGTH = 500;
 
 void setup() {
   size(600, 600);
@@ -44,6 +44,10 @@ void mouseDragged() {
     }
     case RAY: { 
       ray.setAngle(ray.getOrigin().angle(mouseX, mouseY));
+//      ray.propogateReflection();
+      
+//      if (ray.child != null)
+//        ray.child.propogateReflection();
       break;
     }
   }

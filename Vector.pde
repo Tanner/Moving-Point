@@ -11,6 +11,18 @@ class Vector {
     this.x = b.x - a.x;
     this.y = b.y - a.y;
   }
+
+  Vector vectorByAdding(Point p) {
+    return new Vector(x + p.x, y + p.y);
+  }
+  
+  Vector vectorBySubtracting(Point p) {
+    return new Vector(x - p.x, y - p.y);
+  }
+  
+  Vector vectorByAdding(Vector v) {
+    return new Vector(x + v.x, y + v.y);
+  }
   
   Vector vectorBySubtracting(Vector v) {
     return new Vector(x - v.x, y - v.y);

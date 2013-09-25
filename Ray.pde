@@ -3,7 +3,7 @@ class Ray {
   Point origin;
   float angle;
   PolyLoop loop;
-  Ray reflection;
+  Ray child;
   float length;
   float totalLength;
   
@@ -23,15 +23,17 @@ class Ray {
          origin.x + cos(angle) * length,
          origin.y + sin(angle) * length);
           
-    if (reflection != null) {
-      Point intersection = reflection.getOrigin();
+    if (child != null) {
+      Point intersection = child.getOrigin();
       intersection.display();
     
-      reflection.display();
+      Random r = new Random((int)length);
+      stroke(color(255 - r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+      child.display();
     }
   }
   
-  void propogateReflection() {
+  void propogateReflection() {    
     if (loop == null || length <= 0) {
       return;
     }
@@ -54,22 +56,18 @@ class Ray {
       float angle = new Vector(1, 0).angle(reflection);
       Ray child = new Ray(p, remainingLength);
       
-      child.setAngle(angle);
-      child.setPolyLoop(loop);
-      
       this.length = length - remainingLength;
-      this.reflection = child;
-    }
-    
-    if (reflection != null) {
-//      reflection.propogateReflection();
+      this.child = child;
+      
+      child.setPolyLoop(loop);
+      child.setAngle(angle);
     }
   }
   
   void setAngle(float angle) {
     this.angle = angle;
     this.length = totalLength;
-    this.reflection = null;
+    this.child = null;
     
     propogateReflection();
   }
