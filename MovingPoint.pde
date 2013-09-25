@@ -54,10 +54,6 @@ void mouseDragged() {
     }
     case RAY: { 
       ray.setAngle(ray.getOrigin().angle(mouseX, mouseY));
-//      ray.propogateReflection();
-      
-//      if (ray.child != null)
-//        ray.child.propogateReflection();
       break;
     }
   }
