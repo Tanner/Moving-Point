@@ -95,32 +95,5 @@ class PolyLoop {
     }
     
     return null;
-    
-//    float det1 = new Vector(a, b).det(new Vector(a, c));
-//    float det2 = new Vector(a, b).det(new Vector(a, d));
-//      
-//    if ((det1 <= 0 && det2 >= 0) ||
-//        (det1 >= 0 && det2 <= 0)) {
-//      
-//      // HACK
-//      if (d.x == c.x) {
-//        d = new Point(d.x + 0.1, d.y);
-//      }
-//          
-//      float m1 = d.slope(c);
-//      float m2 = a.slope(b);
-//                              
-//      float x = (m2 * a.x - a.y - m1 * d.x + d.y) / (m2 - m1);
-//      float y = m1 * (x - d.x) + d.y;
-//            
-//      if (x <= max(a.x, b.x) &&
-//          x >= min(a.x, b.x) &&
-//          y <= max(a.y, b.y) &&
-//          y >= min(a.y, b.y)) {
-//        return new Point(x, y);
-//      }
-//    }
-    
-//    return null;
   }
 }
