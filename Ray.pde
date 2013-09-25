@@ -85,7 +85,7 @@ class Ray {
   void resetAndRecalculate() {
     this.length = totalLength;
     this.child = null;
-    
+            
     propogateReflection();
   }
   
