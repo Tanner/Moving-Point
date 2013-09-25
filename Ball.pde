@@ -6,6 +6,8 @@ class Ball extends Point {
   Vector velocity;
   Ray ray;
   
+  Point nextPoint;
+  
   public Ball(float x, float y, PolyLoop loop) {
     super(x, y);
     
@@ -20,7 +22,7 @@ class Ball extends Point {
   void display() {
     ray.display();
     
-    stroke(#00FF00); 
+    stroke(#00FF00);
     ellipse(x,
             y,
             g.strokeWeight * 2,
@@ -34,8 +36,16 @@ class Ball extends Point {
   }
   
   void update() {
-    x += velocity.x;
-    y += velocity.y;
+    float dist = distance(new Point(x + velocity.x, y + velocity.y));
+    
+    nextPoint = ray.pointAlongRay(dist);
+    
+    Ray nextRay = ray.rayAlongRay(dist);
+    
+    velocity = new Vector(cos(nextRay.angle) * 1, sin(nextRay.angle) * 1);
+    
+    x = nextPoint.x;
+    y = nextPoint.y;
     
     updateRay();
   }

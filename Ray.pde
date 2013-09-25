@@ -100,4 +100,28 @@ class Ray {
   void setPolyLoop(PolyLoop loop) {
     this.loop = loop;
   }
+  
+  Point pointAlongRay(float distance) {
+    if (distance > length) {
+      if (child != null) {
+        return child.pointAlongRay(distance - length);
+      } else {
+        return null;
+      }
+    }
+    
+    return new Point(origin.x + cos(angle) * distance, origin.y + sin(angle) * distance);
+  }
+  
+  Ray rayAlongRay(float distance) {    
+    if (distance > length) {
+      if (child != null) {
+        return child.rayAlongRay(distance - length);
+      } else {
+        return null;
+      }
+    }
+    
+    return this;
+  }
 }
