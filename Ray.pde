@@ -6,6 +6,7 @@ class Ray {
   Ray child;
   float length;
   float totalLength;
+  color c;
   
   public Ray(Point origin, float totalLength) {
     this.origin = origin;
@@ -18,6 +19,7 @@ class Ray {
   }
   
   void display() {
+    stroke(c);
     line(origin.x,
          origin.y,
          origin.x + cos(angle) * length,
@@ -27,8 +29,6 @@ class Ray {
       Point intersection = child.getOrigin();
       intersection.display();
     
-      Random r = new Random((int)length);
-      stroke(color(255 - r.nextInt(255), r.nextInt(255), r.nextInt(255)));
       child.display();
     }
   }
@@ -59,6 +59,8 @@ class Ray {
       this.length = length - remainingLength;
       this.child = child;
       
+      colorMode(HSB, 100);
+      child.setColor(color(hue(c), saturation(c), brightness(c) - 5));
       child.setPolyLoop(loop);
       child.setAngle(angle);
     }
@@ -74,6 +76,10 @@ class Ray {
     this.angle = angle;
     
     resetAndRecalculate();
+  }
+  
+  void setColor(color c) {
+    this.c = c;
   }
   
   void resetAndRecalculate() {

@@ -12,12 +12,12 @@ class Ball extends Point {
     velocity = new Vector(1, 1);
     ray = new Ray(this, RAY_LENGTH);
     ray.setPolyLoop(loop);
+    ray.setColor(#FFFF00);
     
     updateRay();
   }
   
   void display() {
-    stroke(#FFFF00);
     ray.display();
     
     stroke(#00FF00); 

@@ -21,7 +21,6 @@ void draw() {
   if (ray != null) {
     ray.setPolyLoop(loop);
     
-    stroke(#00AA00);
     ray.display();
   }
   
@@ -39,6 +38,7 @@ void mousePressed() {
       break;
     case RAY:
       ray = new Ray(mouseX, mouseY, LENGTH);
+      ray.setColor(#00AA00);
       break;
     case BALL:
       ball = new Ball(mouseX, mouseY, loop);
