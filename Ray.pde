@@ -7,6 +7,7 @@ class Ray {
   float length;
   float totalLength;
   color c;
+  float boundaryDistance;
   
   public Ray(Point origin, float totalLength) {
     this.origin = origin;
@@ -38,7 +39,7 @@ class Ray {
       return;
     }
     
-    Pair<Point, Vector> pair = loop.intersectionPointAndVectorPair(this);
+    Pair<Point, Vector> pair = loop.intersectionPointAndVectorPair(this, boundaryDistance);
     
     if (pair != null) {      
       Point p = pair.first;
@@ -55,6 +56,7 @@ class Ray {
       Vector reflection = incident.vectorBySubtracting(normal.vectorByMultiplying(incident.dot(normal) * 2));
       float angle = new Vector(1, 0).angle(reflection);
       Ray child = new Ray(p, remainingLength);
+      child.setBoundaryDistance(boundaryDistance);
       
       this.length = length - remainingLength;
       this.child = child;
@@ -99,6 +101,10 @@ class Ray {
   
   void setPolyLoop(PolyLoop loop) {
     this.loop = loop;
+  }
+  
+  void setBoundaryDistance(float d) {
+    this.boundaryDistance = d;
   }
   
   Point pointAlongRay(float distance) {

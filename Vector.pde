@@ -61,4 +61,8 @@ class Vector {
   float angle(Vector v) {
     return atan2(det(v), dot(v));
   }
+  
+  String toString() {
+    return String.format("[%f, %f]", x, y);
+  }
 }

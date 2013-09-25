@@ -38,6 +38,10 @@ class PolyLoop {
   }
   
   Pair<Point, Vector> intersectionPointAndVectorPair(final Ray ray) {
+    return intersectionPointAndVectorPair(ray, 0);
+  }
+  
+  Pair<Point, Vector> intersectionPointAndVectorPair(final Ray ray, float boundaryDistance) {
     if (points.size() == 0) {
       return null;
     }
@@ -53,9 +57,14 @@ class PolyLoop {
       Point b = points.get(nextPointIndex(i));
       Point c = ray.getOrigin().pointByAddingVector(ray.getVector());
       Point d = ray.getOrigin();
-    
-      Point intersection = intersectionPoint(a, b, c, d);
       
+      Vector abNormal = new Vector(a, b).rotated().vectorByNormalizing();
+            
+      Point na = a.pointByAddingVector(abNormal.vectorByMultiplying(-boundaryDistance));
+      Point nb = b.pointByAddingVector(abNormal.vectorByMultiplying(-boundaryDistance));
+                
+      Point intersection = intersectionPoint(na, nb, c, d);
+            
       if (intersection != null) {        
         float rayHeadDistance = ray.pointAlongRay(ray.length).distance(intersection);
         float rayOriginDistance = ray.origin.distance(intersection);

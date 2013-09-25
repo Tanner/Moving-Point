@@ -16,6 +16,7 @@ class Ball extends Point {
     radius = r;
     
     ray = new Ray(this, RAY_LENGTH);
+    ray.setBoundaryDistance(r);
     ray.setPolyLoop(loop);
     ray.setColor(#FFFF00);
     

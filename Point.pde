@@ -55,7 +55,19 @@ class Point {
     return new Point(this.x + v.x, this.y + v.y);
   }
   
+  Point pointScaledByVector(Vector v) {
+    return new Point(this.x * v.x, this.y * v.y);
+  }
+  
+  Point pointByAddingPoint(Point p) {
+    return new Point(this.x + p.x, this.y + p.y);
+  }
+  
   float slope(Point p) {
     return (p.y - this.y) / (p.x - this.x);
+  }
+  
+  String toString() {
+    return String.format("(%f, %f)", x, y);
   }
 }
