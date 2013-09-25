@@ -1,5 +1,6 @@
 
 enum EditMode {
   POLYLOOP,
-  RAY
+  RAY,
+  BALL
 };

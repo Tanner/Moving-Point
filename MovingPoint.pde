@@ -1,6 +1,7 @@
 
 PolyLoop loop = new PolyLoop();
 Ray ray = null;
+Ball ball = null;
 EditMode editMode = EditMode.POLYLOOP;
 final float LENGTH = 500;
 
@@ -23,6 +24,12 @@ void draw() {
     stroke(#00AA00);
     ray.display();
   }
+  
+  if (ball != null) {
+    ball.update();
+    
+    ball.display();
+  }
 }
 
 void mousePressed() {
@@ -32,6 +39,9 @@ void mousePressed() {
       break;
     case RAY:
       ray = new Ray(mouseX, mouseY, LENGTH);
+      break;
+    case BALL:
+      ball = new Ball(mouseX, mouseY, loop);
       break;
   }
 }
@@ -65,6 +75,7 @@ void keyPressed() {
     }
     case 'p': setEditMode(EditMode.POLYLOOP); break;
     case 'r': setEditMode(EditMode.RAY); break;
+    case 'b': setEditMode(EditMode.BALL); break;
   }
 }
 

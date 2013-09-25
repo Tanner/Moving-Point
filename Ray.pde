@@ -64,6 +64,10 @@ class Ray {
     }
   }
   
+  void setOrigin(Point origin) {
+    this.origin = origin;
+  }
+  
   void setAngle(float angle) {
     this.angle = angle;
     this.length = totalLength;
