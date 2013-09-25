@@ -68,6 +68,8 @@ void keyPressed() {
     case 'c': {
       if (editMode == EditMode.POLYLOOP) {
         loop.removeAllPoints();
+      } else if (editMode == EditMode.BALL) {
+        ball = null;
       } else {
         ray = null;
       }
