@@ -5,13 +5,16 @@ final float VELOCITY_LINE_LENGTH = 100;
 class Ball extends Point {
   Vector velocity;
   Ray ray;
+  int radius;
   
   Point nextPoint;
   
-  public Ball(float x, float y, PolyLoop loop) {
+  public Ball(float x, float y, int r, PolyLoop loop) {
     super(x, y);
     
     velocity = new Vector(1, 1);
+    radius = r;
+    
     ray = new Ray(this, RAY_LENGTH);
     ray.setPolyLoop(loop);
     ray.setColor(#FFFF00);
@@ -22,11 +25,12 @@ class Ball extends Point {
   void display() {
     ray.display();
     
-    stroke(#00FF00);
+    fill(#00FF00);
+    noStroke();
     ellipse(x,
             y,
-            g.strokeWeight * 2,
-            g.strokeWeight * 2);
+            radius * 2,
+            radius * 2);
     
     stroke(#00FF00);
     line(x,

@@ -41,7 +41,7 @@ void mousePressed() {
       ray.setColor(#00AA00);
       break;
     case BALL:
-      ball = new Ball(mouseX, mouseY, loop);
+      ball = new Ball(mouseX, mouseY, 10, loop);
       break;
   }
 }
