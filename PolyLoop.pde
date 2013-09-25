@@ -48,7 +48,7 @@ class PolyLoop {
       }
     });
     
-    for (int i = 0; i < points.size(); i++) {
+    for (int i = 0; i < points.size() - 1; i++) {
       Point a = points.get(i);
       Point b = points.get(nextPointIndex(i));
       Point c = ray.getOrigin().pointByAddingVector(ray.getVector());
